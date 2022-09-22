@@ -16,7 +16,7 @@ SELECT Population, LifeExpectancy FROM country WHERE Code = "ARG";   #37032000  
 ### QUESTION 3- 3.	Using IS NOT NULL, ORDER BY, and LIMIT,
 # which country has the highest life expectancy?
 SELECT * FROM country;
-SELECT Name, LifeExpectancy FROM country ORDER BY LifeExpectancy DESC LIMIT 1;
+SELECT Name, LifeExpectancy FROM country ORDER BY LifeExpectancy DESC LIMIT 1;     #Andorra 83.5
 
 
 ### QUESTION 4.	Using JOIN ... ON, find the capital city of Spain.
@@ -29,7 +29,7 @@ SELECT Name FROM city  WHERE ID=(
 SELECT c.Name FROM city c
 JOIN country ON c.ID=country.Capital
 WHERE ID=(
-	SELECT Capital FROM country WHERE Name="Spain");
+	SELECT Capital FROM country WHERE Name="Spain");      #Madrid
 
 
 ### QUESTION 5: 5.	Using JOIN ... ON, list all the languages spoken in the Southeast Asia region.
@@ -41,7 +41,7 @@ WHERE c.Region="Southeast Asia";
 
 
 ### QUESTION 6: Using a single query, list 25 cities around the world that start with the letter F.
-SELECT c.Name FROM city c WHERE c.Name LIKE "F%" LIMIT 25;
+SELECT c.Name FROM city c WHERE c.Name LIKE "F%" LIMIT 25;          #Fagatogo, Florencio Varela...
 
 
 ### QUESTION 7: Using COUNT and JOIN ... ON, get the number of cities in China.
@@ -51,18 +51,18 @@ SELECT COUNT(cc.ID) FROM city cc
 JOIN country c ON cc.CountryCode = c.Code
 WHERE CountryCode = (
 	SELECT c.Code FROM country c WHERE c.Name = "China"
-);
+);                  #363
 
 
 ### QUESTION 8:	Using IS NOT NULL, ORDER BY, and LIMIT, which country has the lowest population? 
 # Discard non-zero populations.
 SELECT c.Name, c.Population FROM country c 
 WHERE c.Population IS NOT NULL AND c.Population > 0 
-ORDER BY c.Population ASC LIMIT 1;
+ORDER BY c.Population ASC LIMIT 1;             #Pitcairn 50
 
 
 ### QUESTION 9:	Using aggregate functions, return the number of countries the database contains.
-SELECT COUNT(Code) FROM country;      239
+SELECT COUNT(Code) FROM country;      #239
 
 
 ### QUESTION 10: 10.	What are the top ten largest countries by area?
