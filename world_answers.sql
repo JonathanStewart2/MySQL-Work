@@ -56,7 +56,9 @@ WHERE CountryCode = (
 
 ### QUESTION 8:	Using IS NOT NULL, ORDER BY, and LIMIT, which country has the lowest population? 
 # Discard non-zero populations.
-SELECT c.Name, c.Population FROM country c WHERE c.Population > 0 ORDER BY c.Population ASC LIMIT 1;
+SELECT c.Name, c.Population FROM country c 
+WHERE c.Population IS NOT NULL AND c.Population > 0 
+ORDER BY c.Population ASC LIMIT 1;
 
 
 ### QUESTION 9:	Using aggregate functions, return the number of countries the database contains.
@@ -108,13 +110,14 @@ SELECT Name, GNP FROM country ORDER BY GNP DESC LIMIT 10;      #USA, Japan, Germ
 
 ### QUESTION 16: List the names of, and number of languages spoken by, the top ten most 
 # multilingual countries.
+SELECT COUNT(CountryCode) AS Number_of_languages, c.Name AS Country FROM countrylanguage cl
+JOIN country c ON c.Code = cl.CountryCode
+GROUP BY cl.CountryCode
+ORDER BY Number_of_languages DESC
+LIMIT 10;
+
+
+### QUESTION 17: 
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
-
-SELECT COUNT(CountryCode) AS Number_of_languages, c.Country FROM countrylanguage cl
-JOIN country c ON c.Code = cl.CountryCode
-GROUP BY cl.CountryCode;
-
-
-
