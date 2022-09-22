@@ -62,11 +62,11 @@ ORDER BY c.Population ASC LIMIT 1;
 
 
 ### QUESTION 9:	Using aggregate functions, return the number of countries the database contains.
-SELECT COUNT(Code) FROM country;
+SELECT COUNT(Code) FROM country;      239
 
 
 ### QUESTION 10: 10.	What are the top ten largest countries by area?
-SELECT c.Name, c.SurfaceArea FROM country c ORDER BY SurfaceArea DESC LIMIT 10;
+SELECT c.Name, c.SurfaceArea FROM country c ORDER BY SurfaceArea DESC LIMIT 10;    #Russia, Antartica
 
 
 ### QUESTION 11:	List the five largest cities by population in Japan.
@@ -78,7 +78,7 @@ WHERE CountryCode = (
 	SELECT c.Code FROM country c WHERE c.Name="Japan"
 )
 ORDER BY Population DESC 
-LIMIT 5;
+LIMIT 5;            #Tokyo, Jokohama, Osaka, Nagoya, Sapporo
 
 
 ### QUESTION 12: List the names and country codes of every country with Elizabeth II as its 
@@ -93,7 +93,6 @@ SELECT c.Code, c.Name FROM country c WHERE HeadOfState LIKE "Elisabeth%"; #not e
 
 ### QUESTION 13: List the top ten countries with the smallest population-to-area ratio. 
 # Discard any countries with a ratio of 0.
-
 SELECT c.Name FROM country c
 WHERE Population > 0
 ORDER BY c.SurfaceArea/c.Population
@@ -114,13 +113,13 @@ SELECT COUNT(CountryCode) AS Number_of_languages, c.Name AS Country FROM country
 JOIN country c ON c.Code = cl.CountryCode
 GROUP BY cl.CountryCode
 ORDER BY Number_of_languages DESC
-LIMIT 10;
+LIMIT 10;           #China, India, Canada, US, Russia....
 
 
 ### QUESTION 17: List every country where over 50% of its population can speak German.
 SELECT c.Name AS Country FROM country c
 JOIN countrylanguage cl ON cl.CountryCode = c.Code
-WHERE Language="German" AND Percentage>50;
+WHERE Language="German" AND Percentage>50;        #Austria, Switz, Germany,Liechten
 
 
 ### QUESTION 18: Which country has the worst life expectancy? Discard zero or null values.
@@ -134,10 +133,9 @@ LIMIT 1;     #Zambia
 SELECT COUNT(GovernmentForm) AS Number_using_this_Government, GovernmentForm FROM country
 GROUP BY GovernmentForm
 ORDER BY Number_using_this_Government DESC
-LIMIT 3;
+LIMIT 3;             #Republic, Cons. Monarchy, Federal Republic
 
 
 ### QUESTION 20:	How many countries have gained independence since records began?
-SELECT * FROM city;
-SELECT * FROM country;
-SELECT * FROM countrylanguage;
+SELECT COUNT(IndepYear) AS No_of_independent_countries FROM country
+WHERE IndepYear IS NOT NULL;         #192
