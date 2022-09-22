@@ -45,6 +45,19 @@ SELECT c.Name FROM city c WHERE c.Name LIKE "F%" LIMIT 25;
 
 
 ### QUESTION 7: Using COUNT and JOIN ... ON, get the number of cities in China.
-SELECT * FROM countrylanguage;
+SELECT c.Code FROM country c WHERE c.Name = "China";  #CHN
+
+SELECT COUNT(cc.ID) FROM city cc
+JOIN country c ON cc.CountryCode = c.Code
+WHERE CountryCode = (
+	SELECT c.Code FROM country c WHERE c.Name = "China"
+);
+
+
+### QUESTION 8:	Using IS NOT NULL, ORDER BY, and LIMIT, which country has the lowest population? 
+# Discard non-zero populations.
 SELECT * FROM city;
 SELECT * FROM country;
+SELECT * FROM countrylanguage;
+
+
