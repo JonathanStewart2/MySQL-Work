@@ -56,8 +56,10 @@ WHERE CountryCode = (
 
 ### QUESTION 8:	Using IS NOT NULL, ORDER BY, and LIMIT, which country has the lowest population? 
 # Discard non-zero populations.
+SELECT c.Name, c.Population FROM country c WHERE c.Population > 0 ORDER BY c.Population ASC LIMIT 1;
+
+
+### QUESTION 9:9.	Using aggregate functions, return the number of countries the database contains.
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
-
-
