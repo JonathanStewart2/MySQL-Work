@@ -124,6 +124,13 @@ WHERE Language="German" AND Percentage>50;
 
 
 ### QUESTION 18: Which country has the worst life expectancy? Discard zero or null values.
+SELECT c.Name, c.LifeExpectancy FROM country c 
+WHERE c.LifeExpectancy IS NOT NULL 
+ORDER BY LifeExpectancy
+LIMIT 1;     #Zambia
+
+
+### QUESTION 19:
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
