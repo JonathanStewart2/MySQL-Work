@@ -68,6 +68,19 @@ SELECT c.Name, c.SurfaceArea FROM country c ORDER BY SurfaceArea DESC LIMIT 10;
 
 
 ### QUESTION 11:	List the five largest cities by population in Japan.
+SELECT c.Code FROM country c WHERE c.Name="Japan";   #JPN
+
+SELECT cc.Name, cc.Population FROM city cc
+JOIN country c ON cc.CountryCode = c.Code
+WHERE CountryCode = (
+	SELECT c.Code FROM country c WHERE c.Name="Japan"
+)
+ORDER BY Population DESC 
+LIMIT 5;
+
+
+### QUESTION 12: List the names and country codes of every country with Elizabeth II as its 
+# Head of State. You will need to fix the mistake first!
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
