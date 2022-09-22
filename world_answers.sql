@@ -59,7 +59,15 @@ WHERE CountryCode = (
 SELECT c.Name, c.Population FROM country c WHERE c.Population > 0 ORDER BY c.Population ASC LIMIT 1;
 
 
-### QUESTION 9:9.	Using aggregate functions, return the number of countries the database contains.
+### QUESTION 9:	Using aggregate functions, return the number of countries the database contains.
+SELECT COUNT(Code) FROM country;
+
+
+### QUESTION 10: 10.	What are the top ten largest countries by area?
+SELECT c.Name, c.SurfaceArea FROM country c ORDER BY SurfaceArea DESC LIMIT 10;
+
+
+### QUESTION 11:	List the five largest cities by population in Japan.
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
