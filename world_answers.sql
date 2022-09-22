@@ -130,7 +130,14 @@ ORDER BY LifeExpectancy
 LIMIT 1;     #Zambia
 
 
-### QUESTION 19:
+### QUESTION 19: List the top three most common government forms.
+SELECT COUNT(GovernmentForm) AS Number_using_this_Government, GovernmentForm FROM country
+GROUP BY GovernmentForm
+ORDER BY Number_using_this_Government DESC
+LIMIT 3;
+
+
+### QUESTION 20:	How many countries have gained independence since records began?
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
