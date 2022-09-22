@@ -99,6 +99,15 @@ LIMIT 10;            #Macao
 
 
 ### QUESTION 14: List every unique world language.
+SELECT DISTINCT(Language) FROM countrylanguage;
+
+
+### QUESTION 15:	List the names and GNP of the world's top 10 richest countries.
+SELECT Name, GNP FROM country ORDER BY GNP DESC LIMIT 10;      #USA, Japan, Germany...
+
+
+### QUESTION 16: List the names of, and number of languages spoken by, the top ten most 
+# multilingual countries.
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
