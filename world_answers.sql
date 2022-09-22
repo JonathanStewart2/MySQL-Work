@@ -111,3 +111,10 @@ SELECT Name, GNP FROM country ORDER BY GNP DESC LIMIT 10;      #USA, Japan, Germ
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
+
+SELECT COUNT(CountryCode) AS Number_of_languages, c.Country FROM countrylanguage cl
+JOIN country c ON c.Code = cl.CountryCode
+GROUP BY cl.CountryCode;
+
+
+
