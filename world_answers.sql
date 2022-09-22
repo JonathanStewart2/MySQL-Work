@@ -117,7 +117,13 @@ ORDER BY Number_of_languages DESC
 LIMIT 10;
 
 
-### QUESTION 17: 
+### QUESTION 17: List every country where over 50% of its population can speak German.
+SELECT c.Name AS Country FROM country c
+JOIN countrylanguage cl ON cl.CountryCode = c.Code
+WHERE Language="German" AND Percentage>50;
+
+
+### QUESTION 18: Which country has the worst life expectancy? Discard zero or null values.
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
