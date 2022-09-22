@@ -81,6 +81,24 @@ LIMIT 5;
 
 ### QUESTION 12: List the names and country codes of every country with Elizabeth II as its 
 # Head of State. You will need to fix the mistake first!
+
+UPDATE country
+SET HeadOfState = "Elizabeth II"
+WHERE HeadOfState = "Elisabeth II"; #SAFE MODE STOPPAGE
+
+SELECT c.Code, c.Name FROM country c WHERE HeadOfState LIKE "Elisabeth%"; #not edited spelling
+
+
+### QUESTION 13: List the top ten countries with the smallest population-to-area ratio. 
+# Discard any countries with a ratio of 0.
+
+SELECT c.Name FROM country c
+WHERE Population > 0
+ORDER BY c.SurfaceArea/c.Population
+LIMIT 10;            #Macao
+
+
+### QUESTION 14: List every unique world language.
 SELECT * FROM city;
 SELECT * FROM country;
 SELECT * FROM countrylanguage;
