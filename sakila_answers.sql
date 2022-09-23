@@ -102,10 +102,13 @@ WHERE r.inventory_id = (
 SELECT AVG(length) AS Average_runtime FROM film;     #115.2720
 
 ###QUESTION 16:	List the average runtime for every film category.
-SELECT * FROM actor;
+SELECT AVG(f.length) AS Average_runtime, fc.category_id AS Film_category FROM film f
+JOIN film_category fc ON fc.film_id = f.film_id
+GROUP BY fc.category_id
+ORDER BY Film_category;        #1-111.6094, 2-111.0152, 3-109.8
+
+### QUESTION 17: List all movies featuring a robot.
 SELECT * FROM film;
-SELECT * FROM film_actor;
-SELECT * FROM rental;
-SELECT * FROM inventory;
-SELECT * FROM store;
-SELECT * FROM payment;
+SELECT * FROM film_category;
+
+
