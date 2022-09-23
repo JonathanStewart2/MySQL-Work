@@ -51,23 +51,15 @@ SELECT COUNT(actor_id) AS No_of_Movies FROM film_actor
 GROUP BY actor_id 
 ORDER BY No_of_movies DESC LIMIT 1;     #42
 
-SELECT first_name FROM actor WHERE actor_id = 42;  # Tom
 
-SELECT CONCAT(first_name," ",last_name) AS Actor FROM actor a
+SELECT CONCAT(first_name," ",last_name) AS Actor, COUNT(fa.actor_id) AS No_of_movies FROM actor a
 JOIN film_actor fa ON fa.actor_id = a.actor_id
-WHERE a.actor_id = (
-	SELECT COUNT(fa.actor_id) AS No_of_Movies FROM film_actor fa
-	GROUP BY fa.actor_id 
-	ORDER BY No_of_movies DESC LIMIT 1
-);                          #Tom Miranda    -returns multiple names for him?!
-
-
+GROUP BY fa.actor_id 
+ORDER BY No_of_movies DESC LIMIT 1;       #Gina Degeneres
 
 #######################################################
 ### QUESTION 14:	When is 'Academy Dinosaur' due?
-SELECT * FROM actor;
 SELECT * FROM film;
-SELECT * FROM film_actor;
 SELECT * FROM rental;
 SELECT * FROM inventory;
 SELECT * FROM store;
@@ -94,6 +86,31 @@ WHERE r.inventory_id = (
         )
 	)
 ;
+
+SELECT i.inventory_id FROM inventory i
+JOIN film f ON i.film_id = f.film_id
+WHERE f.film_id = (
+	SELECT film_id FROM film WHERE title = "Academy Dinosaur"
+); 
+
+#Get rental_id where inventory_id = 1-8
+SELECT r.rental_id, r.return_date, i.inventory_id FROM rental r
+JOIN inventory i ON i.inventory_id = r.inventory_id
+JOIN film f ON i.film_id = f.film_id
+	WHERE f.film_id = (
+		SELECT film_id FROM film WHERE title = "Academy Dinosaur"
+        )
+ORDER BY r.return_date DESC
+;
+
+### ANSWER
+SELECT f.title, r.rental_date, f.rental_duration, 
+DATE_ADD(r.rental_date, INTERVAL f.rental_duration DAY) AS due_date 
+FROM (rental r JOIN inventory i ON 
+r.inventory_id=i.inventory_id)
+JOIN film f ON f.film_id = i.film_id
+WHERE f.title = "ACADEMY DINOSAUR" 
+AND r.return_date IS NULL;
 
 #######################################################
 
@@ -131,11 +148,13 @@ WHERE fc.category_id = (
 SELECT f.title FROM film f
 JOIN film_category fc ON fc.film_id = f.film_id
 JOIN category c ON c.category_id = fc.category_id
-JOIN film f ON f.film_id = fc.film_id
 WHERE fc.film_id = (
 	SELECT fc.film_id FROM film_category fc
 	WHERE fc.category_id = (
 		SELECT c.category_id FROM category c WHERE name = "Horror"
 	)  
 );
+
+
+### QUESTION 20: List the full name of the staff member with the ID of 2.
 
