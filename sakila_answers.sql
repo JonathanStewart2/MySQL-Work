@@ -24,5 +24,11 @@ SELECT title FROM film WHERE rating="R";     #Airport Pollock, Alone Trip
 SELECT title FROM film WHERE rating!="R";     #Academy Dinosaur, Ace Goldfinger...
 
 ###QUESTION 8:	Find the ten shortest movies.
+SELECT title FROM film ORDER BY length ASC LIMIT 10; #Ridgemont Submarine, Iron Moon...
+
+###QUESTION 9: Find the movies with the longest runtime, without using LIMIT.
+SELECT title FROM film ORDER BY length DESC;   #Chicago North, Control Anthem...
+
+###QUESTION 10:	Find all movies that have deleted scenes.
 SELECT * FROM actor;
 SELECT * FROM film;
