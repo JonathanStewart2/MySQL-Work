@@ -11,4 +11,12 @@ SELECT last_name AS Actor_Surname_with_Firstname_John FROM actor WHERE first_nam
 SELECT * FROM actor WHERE last_name="Neeson";     #Christian, Jayne
 
 ### QUESTION 4:	Find all actors with ID numbers divisible by 10.
+SELECT CONCAT(first_name," ",last_name) AS Actor_With_ID_Divisable_by_10 FROM actor
+WHERE actor_id%10=0;       #Christian Gable, Lucille Tracy, Sandra Peck...alter
+
+###QUESTION 5:	What is the description of the movie with an ID of 100?
+SELECT description FROM film WHERE film_id = 100;    #A beautiful drama of a dentist...
+
+### QUESTION 6:	Find every R-rated movie
 SELECT * FROM actor;
+SELECT * FROM film;
