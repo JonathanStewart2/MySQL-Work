@@ -111,7 +111,31 @@ ORDER BY Film_category;        #1-111.6094, 2-111.0152, 3-109.8
 SELECT * FROM film_text WHERE description LIKE "%robot%";
 
 ###QUESTION 18:	How many movies were released in 2010?
+SELECT * FROM film WHERE release_year = "2010";   #0 - all released in 2006?
+
+###QUESTION 19:	Find the titles of all the horror movies.
 SELECT * FROM film;
 SELECT * FROM film_category;
+SELECT * FROM film_text;
+SELECT * FROM category;
 
+SELECT category_id FROM category WHERE name = "Horror";    #11
+
+SELECT fc.film_id FROM film_category fc
+JOIN category c ON c.category_id = fc.category_id
+JOIN film f ON f.film_id = fc.film_id
+WHERE fc.category_id = (
+	SELECT c.category_id FROM category c WHERE name = "Horror"
+);        #2,4,8,9 etc
+
+SELECT f.title FROM film f
+JOIN film_category fc ON fc.film_id = f.film_id
+JOIN category c ON c.category_id = fc.category_id
+JOIN film f ON f.film_id = fc.film_id
+WHERE fc.film_id = (
+	SELECT fc.film_id FROM film_category fc
+	WHERE fc.category_id = (
+		SELECT c.category_id FROM category c WHERE name = "Horror"
+	)  
+);
 
