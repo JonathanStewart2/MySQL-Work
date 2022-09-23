@@ -157,4 +157,24 @@ WHERE fc.film_id = (
 
 
 ### QUESTION 20: List the full name of the staff member with the ID of 2.
+SELECT CONCAT(first_name, " ", last_name) AS Staff_ID_2 FROM staff WHERE staff_id = 2;
 
+### QUESTION 21:List all the movies that Fred Costner has appeared in.
+SELECT f.title FROM film f
+JOIN film_actor fa ON fa.film_id = f.film_id
+JOIN actor a ON a.actor_id = fa.actor_id
+WHERE a.first_name = "Fred" AND a.last_name = "Costner";
+
+### QUESTION 22: How many distinct countries are there?
+SELECT COUNT(DISTINCT(country)) AS No_of_Countries FROM country;
+
+### QUESTION 23: List the name of every language in reverse-alphabetical order.
+SELECT l.name FROM language l ORDER BY l.name DESC;
+
+## QUESTION 24:	List the full names of every actor whose surname ends with #'-son' 
+# in alphabetical order by their forename.
+SELECT CONCAT(first_name, " ", last_name) AS Actors FROM actor
+WHERE last_name LIKE "%son"
+ORDER BY first_name;
+
+### QUESTION 25:	Which category contains the most films?
