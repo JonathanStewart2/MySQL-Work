@@ -131,29 +131,15 @@ SELECT * FROM film_text WHERE description LIKE "%robot%";
 SELECT * FROM film WHERE release_year = "2010";   #0 - all released in 2006?
 
 ###QUESTION 19:	Find the titles of all the horror movies.
-SELECT * FROM film;
-SELECT * FROM film_category;
-SELECT * FROM film_text;
-SELECT * FROM category;
-
 SELECT category_id FROM category WHERE name = "Horror";    #11
-
-SELECT fc.film_id FROM film_category fc
-JOIN category c ON c.category_id = fc.category_id
-JOIN film f ON f.film_id = fc.film_id
-WHERE fc.category_id = (
-	SELECT c.category_id FROM category c WHERE name = "Horror"
-);        #2,4,8,9 etc
 
 SELECT f.title FROM film f
 JOIN film_category fc ON fc.film_id = f.film_id
 JOIN category c ON c.category_id = fc.category_id
-WHERE fc.film_id = (
-	SELECT fc.film_id FROM film_category fc
-	WHERE fc.category_id = (
-		SELECT c.category_id FROM category c WHERE name = "Horror"
-	)  
-);
+WHERE c.category_id = (
+	SELECT c.category_id FROM category c WHERE name = "Horror"
+);              #ACE GOLDFINGER, AFFAIR PREJUDICE, AIRPORT POLLOCK...
+
 
 
 ### QUESTION 20: List the full name of the staff member with the ID of 2.
@@ -178,12 +164,16 @@ WHERE last_name LIKE "%son"
 ORDER BY first_name;
 
 ### QUESTION 25:	Which category contains the most films?
-SELECT * FROM film_category ORDER BY category_id;
-SELECT * FROM category;
-
 SELECT c.name, COUNT(fc.category_id) AS Frequency FROM category c
 JOIN film_category fc ON fc.category_id = c.category_id
 GROUP BY fc.category_id
 ORDER BY Frequency DESC
 LIMIT 1
 ;           #Sports 74
+
+#### ANSWER - returns Foreign 73, FILM LIST ISN'T A TABLE????
+SELECT * FROM film_list;
+SELECT category, COUNT(title) FROM film_list 
+GROUP BY category 
+ORDER BY COUNT(title) 
+DESC LIMIT 1;
