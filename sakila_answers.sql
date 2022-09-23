@@ -30,5 +30,15 @@ SELECT title FROM film ORDER BY length ASC LIMIT 10; #Ridgemont Submarine, Iron 
 SELECT title FROM film ORDER BY length DESC;   #Chicago North, Control Anthem...
 
 ###QUESTION 10:	Find all movies that have deleted scenes.
+SELECT title FROM film WHERE special_features LIKE "%Deleted Scenes%";   #Academy Dinosaur, Ace Goldfinger...
+
+###QUESTION 11:	Using HAVING, reverse-alphabetically list the last names that are not repeated.
+SELECT last_name FROM actor 
+GROUP BY last_name
+HAVING COUNT(last_name) = 1
+ORDER BY last_name DESC;    #Wray, Witherspoon, Wilson...
+
+###QUESTION 12:	Using HAVING, list the last names that appear more than once, 
+# from highest to lowest frequency.
 SELECT * FROM actor;
 SELECT * FROM film;
