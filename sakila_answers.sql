@@ -178,3 +178,12 @@ WHERE last_name LIKE "%son"
 ORDER BY first_name;
 
 ### QUESTION 25:	Which category contains the most films?
+SELECT * FROM film_category ORDER BY category_id;
+SELECT * FROM category;
+
+SELECT c.name, COUNT(fc.category_id) AS Frequency FROM category c
+JOIN film_category fc ON fc.category_id = c.category_id
+GROUP BY fc.category_id
+ORDER BY Frequency DESC
+LIMIT 1
+;           #Sports 74
