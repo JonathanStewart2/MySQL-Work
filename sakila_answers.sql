@@ -61,6 +61,9 @@ WHERE a.actor_id = (
 	ORDER BY No_of_movies DESC LIMIT 1
 );                          #Tom Miranda    -returns multiple names for him?!
 
+
+
+#######################################################
 ### QUESTION 14:	When is 'Academy Dinosaur' due?
 SELECT * FROM actor;
 SELECT * FROM film;
@@ -80,3 +83,29 @@ WHERE f.film_id = (
 	SELECT film_id FROM film WHERE title = "Academy Dinosaur"
 ); 
 
+#Get rental_id where inventory_id = 1-8
+SELECT r.rental_id FROM rental r
+JOIN inventory i ON i.inventory_id = r.inventory_id
+WHERE r.inventory_id = (
+	SELECT i.inventory_id FROM inventory i
+	JOIN film f ON i.film_id = f.film_id
+	WHERE f.film_id = (
+		SELECT film_id FROM film WHERE title = "Academy Dinosaur"
+        )
+	)
+;
+
+#######################################################
+
+
+###QUESTION 15:	What is the average runtime of all films?
+SELECT AVG(length) AS Average_runtime FROM film;     #115.2720
+
+###QUESTION 16:	List the average runtime for every film category.
+SELECT * FROM actor;
+SELECT * FROM film;
+SELECT * FROM film_actor;
+SELECT * FROM rental;
+SELECT * FROM inventory;
+SELECT * FROM store;
+SELECT * FROM payment;

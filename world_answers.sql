@@ -33,8 +33,10 @@ WHERE ID=(
 
 
 ### QUESTION 5: 5.	Using JOIN ... ON, list all the languages spoken in the Southeast Asia region.
+USE world;
+SELECT * FROM country;
 SELECT c.Code FROM country c WHERE Region="Southeast Asia";
-
+USE DATABASE world;
 SELECT DISTINCT cl.Language FROM countrylanguage cl
 JOIN country c ON c.Code = cl.CountryCode
 WHERE c.Region="Southeast Asia";
@@ -95,7 +97,7 @@ SELECT c.Code, c.Name FROM country c WHERE HeadOfState LIKE "Elisabeth%"; #not e
 # Discard any countries with a ratio of 0.
 SELECT c.Name FROM country c
 WHERE Population > 0
-ORDER BY c.SurfaceArea/c.Population
+ORDER BY c.SurfaceArea/c.Population DESC
 LIMIT 10;            #Macao
 
 
