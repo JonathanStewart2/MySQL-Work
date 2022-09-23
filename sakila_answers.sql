@@ -18,5 +18,11 @@ WHERE actor_id%10=0;       #Christian Gable, Lucille Tracy, Sandra Peck...alter
 SELECT description FROM film WHERE film_id = 100;    #A beautiful drama of a dentist...
 
 ### QUESTION 6:	Find every R-rated movie
+SELECT title FROM film WHERE rating="R";     #Airport Pollock, Alone Trip
+
+###QUESTION 7:	Find every non-R-rated movie.
+SELECT title FROM film WHERE rating!="R";     #Academy Dinosaur, Ace Goldfinger...
+
+###QUESTION 8:	Find the ten shortest movies.
 SELECT * FROM actor;
 SELECT * FROM film;
