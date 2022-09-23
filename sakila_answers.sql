@@ -108,6 +108,9 @@ GROUP BY fc.category_id
 ORDER BY Film_category;        #1-111.6094, 2-111.0152, 3-109.8
 
 ### QUESTION 17: List all movies featuring a robot.
+SELECT * FROM film_text WHERE description LIKE "%robot%";
+
+###QUESTION 18:	How many movies were released in 2010?
 SELECT * FROM film;
 SELECT * FROM film_category;
 
