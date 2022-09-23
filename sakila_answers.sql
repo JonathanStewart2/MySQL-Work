@@ -48,4 +48,20 @@ ORDER BY COUNT(last_name) DESC;    #Kilmer, Nolte, Temple
 ###QUESTION 13:	Which actor has appeared in the most films?
 SELECT * FROM actor;
 SELECT * FROM film;
+SELECT * FROM film_actor;
+
+SELECT COUNT(actor_id) AS No_of_Movies FROM film_actor
+GROUP BY actor_id 
+ORDER BY No_of_movies DESC LIMIT 1;     #42
+
+SELECT CONCAT(first_name," ",last_name) AS Actor FROM actor a
+JOIN film_actor fa ON fa.actor_id = a.actor_id
+WHERE a.actor_id = (
+	SELECT COUNT(fa.actor_id) AS No_of_Movies FROM film_actor fa
+	GROUP BY fa.actor_id 
+	ORDER BY No_of_movies DESC LIMIT 1
+);
+
+
+
 
