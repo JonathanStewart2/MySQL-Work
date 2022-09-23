@@ -40,5 +40,12 @@ ORDER BY last_name DESC;    #Wray, Witherspoon, Wilson...
 
 ###QUESTION 12:	Using HAVING, list the last names that appear more than once, 
 # from highest to lowest frequency.
+SELECT last_name, COUNT(last_name) AS Frequency FROM actor
+GROUP BY last_name
+HAVING Frequency >1
+ORDER BY COUNT(last_name) DESC;    #Kilmer, Nolte, Temple
+
+###QUESTION 13:	Which actor has appeared in the most films?
 SELECT * FROM actor;
 SELECT * FROM film;
+
