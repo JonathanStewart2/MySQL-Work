@@ -46,13 +46,12 @@ HAVING Frequency >1
 ORDER BY COUNT(last_name) DESC;    #Kilmer, Nolte, Temple
 
 ###QUESTION 13:	Which actor has appeared in the most films?
-SELECT * FROM actor;
-SELECT * FROM film;
-SELECT * FROM film_actor;
 
 SELECT COUNT(actor_id) AS No_of_Movies FROM film_actor
 GROUP BY actor_id 
 ORDER BY No_of_movies DESC LIMIT 1;     #42
+
+SELECT first_name FROM actor WHERE actor_id = 42;  # Tom
 
 SELECT CONCAT(first_name," ",last_name) AS Actor FROM actor a
 JOIN film_actor fa ON fa.actor_id = a.actor_id
@@ -60,8 +59,24 @@ WHERE a.actor_id = (
 	SELECT COUNT(fa.actor_id) AS No_of_Movies FROM film_actor fa
 	GROUP BY fa.actor_id 
 	ORDER BY No_of_movies DESC LIMIT 1
-);
+);                          #Tom Miranda    -returns multiple names for him?!
 
+### QUESTION 14:	When is 'Academy Dinosaur' due?
+SELECT * FROM actor;
+SELECT * FROM film;
+SELECT * FROM film_actor;
+SELECT * FROM rental;
+SELECT * FROM inventory;
+SELECT * FROM store;
+SELECT * FROM payment;
 
+# Get film id first
+SELECT film_id FROM film WHERE title = "Academy Dinosaur";  #returns 1
 
+# Need inventory_id for inventory
+SELECT i.inventory_id FROM inventory i
+JOIN film f ON i.film_id = f.film_id
+WHERE f.film_id = (
+	SELECT film_id FROM film WHERE title = "Academy Dinosaur"
+); 
 
